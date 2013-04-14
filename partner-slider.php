@@ -2,7 +2,7 @@
 
 /*
   Plugin Name: Partner Slider (PS)
-  Plugin URI: Coming soon...
+  Plugin URI: https://github.com/hnb2/partner-slider
   Description: a plugin to manage and display a list of partners
   Version: 1.0
   Author: Pierre Guillemot

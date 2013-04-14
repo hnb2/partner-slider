@@ -2,7 +2,7 @@
 
 <h2>Overview of your partners</h2>
 
-<a href="<?php.get_bloginfo('url')?>/wp-admin/admin.php?page=admin/manage-partner_controller.php">Add a Partner</a>
+<a href="<?php echo bloginfo('url'); ?>/wp-admin/admin.php?page=admin/manage-partner_controller.php">Add a Partner</a>
 
 <table class="wp-list-table widefat fixed" cellspacing="0">
     <thead>

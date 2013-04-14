@@ -2,7 +2,7 @@
 
 <h2>Overview of your lists</h2>
 
-<a href="<?php.get_bloginfo('url')?>/wp-admin/admin.php?page=admin/manage-list_controller.php">Add a list</a>
+<a href="<?php echo bloginfo('url'); ?>/wp-admin/admin.php?page=admin/manage-list_controller.php">Add a list</a>
 
 <table class="wp-list-table widefat fixed" cellspacing="0">
     <thead>

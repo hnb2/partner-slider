@@ -28,6 +28,6 @@
     
 </form>
 
-    <p><a href="<?php.get_bloginfo('url')?>/wp-admin/admin.php?page=admin/overview-partners_controller.php">Back to the partners</a></p>
+    <p><a href="<?php echo bloginfo('url'); ?>/wp-admin/admin.php?page=admin/overview-partners_controller.php">Back to the partners</a></p>
 
 <hr />

@@ -1,5 +1,6 @@
 <?php
 
+//Use ABSPATH instead
 require('/home/zhongbreizh/www/www/wp-load.php');
 
 /** DATABASE FUNCTIONS **/
