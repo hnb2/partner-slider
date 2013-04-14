@@ -15,3 +15,5 @@ For example you have a programming blog dedicated to Java and Python. You can cr
 I am not a PHP developer, even less a Wordpress developer,
 but i had some fun making this plugin and i would love to have some feedback about it.
 Notably about the plugin architecture, i feel like it's not really consistent.
+
+Please refer to the wiki and do not hesitate to raise issues, fork or whatever you have in mind.
