@@ -1,0 +1,42 @@
+label{
+    display: inline-block;
+    width: 100px;
+    cursor: default;
+}
+
+input[type="text"], select{
+    width: 300px;
+}
+
+input[type="submit"] {
+    width: 100px;
+}
+
+ul{
+    list-style-type:circle;
+}
+
+li{
+    margin-left: 20px;
+}
+
+.all-partners td{
+    border: 1px solid black;
+    width: 120px;
+    height: 120px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.in-use{
+    background-color: #40b026;
+}
+
+.ok{
+    color: #40b026;
+}
+
+.error{
+    color: #e31c1c;
+}
