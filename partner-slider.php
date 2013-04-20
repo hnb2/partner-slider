@@ -6,7 +6,7 @@
   Description: a plugin to manage and display a list of partners
   Version: 1.0
   Author: Pierre Guillemot
-  Author URI: Coming soon...
+  Author URI: https://github.com/hnb2
   License: GPL2
  */
 
@@ -55,12 +55,12 @@ $ps_db_version = "1.0";
  * Function launched at the plugin activation
  * Will create the tables in the database
  */
-function ps_activation() {    
+function ps_activation() {
     global $wpdb;
-    
+
     global $ps_db_version;
-    
-    $sql = "CREATE TABLE ".$wpdb->prefix.PARTNER_TABLE." (
+
+    $sql = "CREATE TABLE " . $wpdb->prefix . PARTNER_TABLE . " (
         id integer not null auto_increment,
         name text not null,
         description text,
@@ -68,28 +68,28 @@ function ps_activation() {
         icon text not null,
         primary key(id)
     );";
-    
-    $sql .= "CREATE TABLE ".$wpdb->prefix.LIST_TABLE."(
+
+    $sql .= "CREATE TABLE " . $wpdb->prefix . LIST_TABLE . "(
         id integer not null auto_increment,
         name text not null,
         page_id integer,
         primary key(id)
     );";
 
-    $sql .= "CREATE TABLE ".$wpdb->prefix.PARTNER_LIST_TABLE."(
+    $sql .= "CREATE TABLE " . $wpdb->prefix . PARTNER_LIST_TABLE . "(
         id_list integer not null,
         id_partner integer not null,
         primary key(id_list, id_partner)
     );";
-    
+
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
     dbDelta($sql);
-    
-    add_option("ps_db_version", $ps_db_version );
-    
+
+    add_option("ps_db_version", $ps_db_version);
+
     //Default thumbnail size
     add_option("ps_thumb_width", 100);
-    add_option("ps_thumb_height", 100);   
+    add_option("ps_thumb_height", 100);
 }
 
 /**
@@ -98,90 +98,97 @@ function ps_activation() {
  */
 function ps_deactivation() {
     global $wpdb;
-    
-    $sql = "drop table if exists ".$wpdb->prefix.PARTNER_TABLE.";";
-    $wpdb->query($sql);      
 
-    $sql = "drop table if exists ".$wpdb->prefix.LIST_TABLE.";";
-    $wpdb->query($sql);   
-    
-    $sql = "drop table if exists ".$wpdb->prefix.PARTNER_LIST_TABLE.";";
-    $wpdb->query($sql);  
-    
+    $sql = "drop table if exists " . $wpdb->prefix . PARTNER_TABLE . ";";
+    $wpdb->query($sql);
+
+    $sql = "drop table if exists " . $wpdb->prefix . LIST_TABLE . ";";
+    $wpdb->query($sql);
+
+    $sql = "drop table if exists " . $wpdb->prefix . PARTNER_LIST_TABLE . ";";
+    $wpdb->query($sql);
+
     delete_option("ps_db_version");
-    
+
     delete_option("ps_widget_title");
-    
+
     delete_option("ps_thumb_width");
     delete_option("ps_thumb_height");
 }
 
 /**
-* Include the admin about page
-*/
-function ps_admin_about(){
-        include(PS_DIR.'admin/about_controller.php');
+ * Include the admin about page
+ */
+function ps_admin_about() {
+    include(PS_DIR . 'admin/about_controller.php');
 }
 
 /**
-* Include the admin manage list page
-*/
-function ps_admin_manage_list(){
-        include(PS_DIR.'admin/manage-list_controller.php');
+ * Include the admin manage list page
+ */
+function ps_admin_manage_list() {
+    include(PS_DIR . 'admin/manage-list_controller.php');
 }
 
 /**
-* Include the admin manage partner page
-*/
-function ps_admin_manage_partner(){
-        include(PS_DIR.'admin/manage-partner_controller.php');
+ * Include the admin manage partner page
+ */
+function ps_admin_manage_partner() {
+    include(PS_DIR . 'admin/manage-partner_controller.php');
 }
 
 /**
-* Include the admin overview partners page
-*/
-function ps_admin_overview_partners(){
-         include(PS_DIR.'admin/overview-partners_controller.php');
+ * Include the admin overview partners page
+ */
+function ps_admin_overview_partners() {
+    include(PS_DIR . 'admin/overview-partners_controller.php');
 }
 
 /**
-* Include the admin overview list page
-*/
-function ps_admin_overview_lists(){
-         include(PS_DIR.'admin/overview-lists_controller.php');
+ * Include the admin overview list page
+ */
+function ps_admin_overview_lists() {
+    include(PS_DIR . 'admin/overview-lists_controller.php');
 }
 
 /**
-* Add administration pages
-*/
-function ps_admin_actions() {  
-        add_menu_page( "Partner Slider", "Partner Slider", "add_users", "admin/about_controller.php", "ps_admin_about", null, 82);
-        add_submenu_page( "admin/about_controller.php", "Partners", "Partners", "add_users", "admin/overview-partners_controller.php", "ps_admin_overview_partners" );
-        add_submenu_page( "admin/about_controller.php", "Lists", "Lists", "add_users", "admin/overview-lists_controller.php", "ps_admin_overview_lists" );
-        add_submenu_page( null, "Add a list", "Add a list", "add_users", "admin/manage-list_controller.php", "ps_admin_manage_list" );		
-        add_submenu_page( null, "Add a partner", "Add a partner", "add_users", "admin/manage-partner_controller.php", "ps_admin_manage_partner" );	
+ * Add administration pages
+ */
+function ps_admin_actions() {
+    add_menu_page("Partner Slider", "Partner Slider", "add_users", "admin/about_controller.php", "ps_admin_about", null, 82);
+    add_submenu_page("admin/about_controller.php", "Partners", "Partners", "add_users", "admin/overview-partners_controller.php", "ps_admin_overview_partners");
+    add_submenu_page("admin/about_controller.php", "Lists", "Lists", "add_users", "admin/overview-lists_controller.php", "ps_admin_overview_lists");
+    add_submenu_page(null, "Add a list", "Add a list", "add_users", "admin/manage-list_controller.php", "ps_admin_manage_list");
+    add_submenu_page(null, "Add a partner", "Add a partner", "add_users", "admin/manage-partner_controller.php", "ps_admin_manage_partner");
 }
 add_action('admin_menu', 'ps_admin_actions');
 
-function ps_add_scripts(){
-    echo "<link rel=\"stylesheet\" href=\"".PS_URL."assets/css/partner_slider_front_end.css\" type=\"text/css\" media=\"screen\" />\n";
-    //echo "<script src=\"http://code.jquery.com/jquery-latest.min.js\" type=\"text/javascript\"></script>\n";
-    echo "<script src=\"".PS_URL."assets/js/jquery.tinycarousel.min.js\" type=\"text/javascript\"></script>\n";
-    echo "<script src=\"".PS_URL."assets/js/partner_slider_front_end.js\" type=\"text/javascript\"></script>\n";
-}
+/**
+ * Add css and js files to the front and back office
+ */
+function ps_add_scripts() {
 
-add_action('wp_head', 'ps_add_scripts');
+    //Add a specific version of jquery from a CDN
+    wp_deregister_script('jquery');
+    wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js', false, '1.8.2');
+    wp_enqueue_script('jquery');
+
+    //Front office specific scripts
+    if (!is_admin()) {
+        wp_enqueue_style('ps_css', PS_URL . 'assets/css/partner_slider_front_end.css', false, '1.0');
+        wp_enqueue_script('ps_tinyCarousel', PS_URL . 'assets/js/jquery.tinycarousel.min.js', array('jquery'), '1.0', true);
+        wp_enqueue_script('ps_slider', PS_URL . 'assets/js/partner_slider_front_end.js', array('ps_tinyCarousel'), '1.0', true);
+    }
+}
+add_action('init', 'ps_add_scripts');
 
 /**
  * Include the utility functions
  */
-include_once(PS_DIR.'includes/functions.php');
+include_once(PS_DIR . 'includes/functions.php');
 
 /**
  * Include the widget
  */
-include_once(PS_DIR.'widget/ps_widget.php');
-
-
-
+include_once(PS_DIR . 'widget/ps_widget.php');
 ?>
