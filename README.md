@@ -17,9 +17,12 @@ I am not a PHP developer, even less a Wordpress developer,
 but i had some fun making this plugin and i would love to have some feedback about it.
 Notably about the plugin architecture, i feel like it's not really consistent.
 
+Tested on Wordpress 3.5.1 with the theme twenty twelve
 Please refer to the wiki and do not hesitate to raise issues, fork or whatever you have in mind.
 
+This project uses :
+ - http://baijs.nl/tinycarousel/ : a jquery plugin to display images in a carousel
+ - ImageManipulator : a PHP class to manipulate images and create thumbnails
 
 TODO:
-CSS which fits the width automatically (use width % and use 3 divs to set horizontally prev partners next)
-option to display or not the next/prev arrows
+ - Set an option to display or not the next/previous arrows (perhaps using a json file to pass the options to the js file)
